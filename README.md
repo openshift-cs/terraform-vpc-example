@@ -74,5 +74,6 @@
 
 | Name | Description |
 |------|-------------|
-| cluster-private-subnets | List of private subnet IDs created |
-| cluster-public-subnets | List of private subnet IDs created |
+| cluster-private-subnets | List of private subnet IDs created. |
+| cluster-public-subnets | List of private subnet IDs created. |
+| cluster-subnets-string | Comma-separated string of all subnet IDs created for this cluster. |
