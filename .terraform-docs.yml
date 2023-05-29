@@ -1,0 +1,77 @@
+formatter: "markdown document"
+
+version: ">= 0.16.0, < 1.0.0"
+
+header-from: main.tf
+footer-from: ""
+
+recursive:
+  enabled: false
+
+sections:
+  hide: []
+  show:
+    - all
+
+content: ""
+
+output:
+  file: "README.md"
+  mode: replace
+  template: |-
+    # ROSA Reference VPC
+
+    # Usage
+
+    ## Planning
+
+    - Simple usage
+
+            $ terraform plan -out rosa.tfplan -var region=us-east-2
+
+    - Full usage with command line variable
+
+            $ terraform plan -out rosa.tfplan \
+                -var region=us-east-2 \
+                -var 'subnet_azs=["use2-az1", "use2-az2", "use2-az3"]' \
+                -var cluster_name=rosa-hcp \
+                -var vpc_cidr=10.0.0.0/16 \
+                -var subnet_cidr_prefix=24 \
+                -var private_subnets_only=false \
+                -var single_az_only=false
+
+
+    - Full usage with sample tfvars file
+
+            $ teraform plan -out rosa.tfplan -var-file=sample.tfvars
+
+    ## Apply
+
+        $ terraform apply rosa.tfplan
+
+    # Reference
+
+    {{ .Content }}
+
+output-values:
+  enabled: false
+  from: ""
+
+sort:
+  enabled: true
+  by: name
+
+settings:
+  anchor: false
+  color: true
+  default: true
+  description: false
+  escape: true
+  hide-empty: false
+  html: true
+  indent: 2
+  lockfile: true
+  read-comments: true
+  required: true
+  sensitive: true
+  type: true
