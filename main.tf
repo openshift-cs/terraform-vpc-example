@@ -135,9 +135,10 @@ module "vpc" {
     "kubernetes.io/role/elb" = "1"
   }
 
-  enable_nat_gateway   = true
-  enable_dns_hostnames = true
-  enable_dns_support   = true
+  enable_nat_gateway            = true
+  enable_dns_hostnames          = true
+  enable_dns_support            = true
+  manage_default_security_group = false
 
   tags = {
     Terraform    = "true"
