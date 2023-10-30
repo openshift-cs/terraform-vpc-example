@@ -5,6 +5,7 @@ locals {
     "us-east-1"      = "use1"
     "us-east-2"      = "use2"
     "us-west-2"      = "usw2"
+    "ap-southeast-3" = "apse3"
   }
   well_known_az_ids = {
     us-east-1 = [2, 4, 6]
