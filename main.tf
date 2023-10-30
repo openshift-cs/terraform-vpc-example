@@ -1,15 +1,16 @@
 locals {
-  supported_regions = [
-    "eu-central-1",
-    "eu-west-1",
-    "us-east-1",
-    "us-east-2",
-    "us-west-2"
-  ]
+  supported_regions = {
+    "eu-central-1"   = "euc1"
+    "eu-west-1"      = "euw1"
+    "us-east-1"      = "use1"
+    "us-east-2"      = "use2"
+    "us-west-2"      = "usw2"
+    "ap-southeast-3" = "apse3"
+  }
   well_known_az_ids = {
     us-east-1 = [2, 4, 6]
   }
-  az_id_prefix = replace(var.region, "/([a-zA-Z]{2})-([a-zA-Z]).*([0-9])/", "$1$2$3-az")
+  az_id_prefix = lookup(local.supported_regions, var.region, null) != null ? "${local.supported_regions[var.region]}-az" : "unknown-az"
   azs = (
     length(var.subnet_azs) > 0 ?
     (var.single_az_only ? [var.subnet_azs[0]] : var.subnet_azs) :
@@ -48,10 +49,10 @@ locals {
 resource "null_resource" "validations" {
   lifecycle {
     precondition {
-      condition     = contains(local.supported_regions, var.region)
+      condition     = lookup(local.supported_regions, var.region, null) != null
       error_message = <<-EOT
         ROSA with hosted control planes is currently only available in these regions:
-          ${join(", ", local.supported_regions)}.
+          ${join(", ", keys(local.supported_regions))}.
       EOT
     }
 
