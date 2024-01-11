@@ -65,3 +65,9 @@ variable "single_az_only" {
   type        = bool
   default     = true
 }
+
+variable "extra_tags" {
+  description: "Extra tags to apply to AWS resources"
+  type: map
+  default: {}
+}
