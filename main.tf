@@ -129,21 +129,24 @@ module "vpc" {
   private_subnets = local.all_subnets[0]
   public_subnets  = local.all_subnets[1]
   # Tags defined per https://repost.aws/knowledge-center/eks-vpc-subnet-discovery
-  private_subnet_tags = {
-    "kubernetes.io/role/internal-elb" = "1"
-  }
-  public_subnet_tags = {
-    "kubernetes.io/role/elb" = "1"
-  }
+  private_subnet_tags = merge(var.extra_tags ,
+    {
+      "kubernetes.io/role/internal-elb" = "1"
+    })
+  public_subnet_tags = merge(var.extra_tags ,
+    {
+      "kubernetes.io/role/elb" = "1"
+    })
 
   enable_nat_gateway            = true
   enable_dns_hostnames          = true
   enable_dns_support            = true
   manage_default_security_group = false
 
-  tags = {
-    Terraform    = "true"
-    service      = "ROSA"
-    cluster_name = var.cluster_name
-  }
+  tags = merge(var.extra_tags,
+    {
+      Terraform    = "true"
+      service      = "ROSA"
+      cluster_name = var.cluster_name
+    })
 }
