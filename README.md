@@ -43,7 +43,7 @@
 | Name | Version |
 |------|---------|
 | aws | 4.67.0 |
-| null | 3.2.1 |
+| null | 3.2.2 |
 
 ## Modules
 
@@ -63,6 +63,7 @@
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | cluster\_name | Name of the created ROSA with hosted control planes cluster. | `string` | `"rosa-hcp"` | no |
+| extra\_tags | Extra tags to apply to AWS resources | `map` | `{}` | no |
 | private\_subnets\_only | Only create private subnets | `bool` | `false` | no |
 | region | Region to create AWS infrastructure resources for a<br>  ROSA with hosted control planes cluster. (required) | `string` | n/a | yes |
 | single\_az\_only | Only create subnets in a single availability zone | `bool` | `true` | no |
