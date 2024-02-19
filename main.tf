@@ -15,6 +15,7 @@ locals {
   }
   well_known_az_ids = {
     us-east-1 = [2, 4, 6]
+    ap-northeast-1 = [1, 2, 4]
   }
   az_id_prefix = lookup(local.supported_regions, var.region, null) != null ? "${local.supported_regions[var.region]}-az" : "unknown-az"
   azs = (
