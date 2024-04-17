@@ -1,6 +1,7 @@
 locals {
   supported_regions = {    
     "ap-northeast-1" = "apne1" 
+    "ap-northeast-3" = "apne3" 
     "ap-southeast-1" = "apse1" 
     "ap-southeast-2" = "apse2" 
     "ap-southeast-3" = "apse3"
