@@ -1,6 +1,7 @@
 locals {
   supported_regions = {    
     "ap-northeast-1" = "apne1" 
+    "ap-northeast-3" = "apne3" 
     "ap-southeast-1" = "apse1" 
     "ap-southeast-2" = "apse2" 
     "ap-southeast-3" = "apse3"
@@ -11,6 +12,7 @@ locals {
     "us-east-1"      = "use1"
     "us-east-2"      = "use2"
     "us-west-2"      = "usw2"
+    "ap-south-1"     = "aps1"
     "ap-south-2"     = "aps2"
   }
   well_known_az_ids = {
