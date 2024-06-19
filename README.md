@@ -22,7 +22,7 @@
 
 - Full usage with sample tfvars file
 
-        $ teraform plan -out rosa.tfplan -var-file=sample.tfvars
+        $ terraform plan -out rosa.tfplan -var-file=sample.tfvars
 
 ## Apply
 
