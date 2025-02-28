@@ -25,7 +25,7 @@ Before you begin, ensure that you have the following:
 
 - Full usage with command line variable
 
-        $ terraform plan -out rosa-zreo-egress.tfplan \
+        $ terraform plan -out rosa-zero-egress.tfplan \
             -var region=us-west-2 \
             -var 'availability_zones=["us-west-2a", "us-west-2b", "us-west-2c"]' \
             -var cluster_name=rosa-zero-egress \
@@ -35,7 +35,7 @@ Before you begin, ensure that you have the following:
 
 - Full usage with sample tfvars file
 
-        $ terraform plan -out rosa.tfplan -var-file=sample.tfvars
+        $ terraform plan -out rosa-zero-egress.tfplan -var-file=sample.tfvars
 
 ### Apply
 
