@@ -1,8 +1,9 @@
 locals {
-  supported_regions = {    
+  supported_regions = merge(local.commercial_regions, local.govcloud_regions)
+  commercial_regions = {
     "ap-northeast-1" = "apne1"
     "ap-northeast-2" = "apne2"
-    "ap-northeast-3" = "apne3" 
+    "ap-northeast-3" = "apne3"
     "ap-southeast-1" = "apse1"
     "ap-southeast-2" = "apse2"
     "ap-southeast-3" = "apse3"
@@ -26,10 +27,13 @@ locals {
     "eu-south-2"     = "eus2"
     "eu-west-3"      = "euw3"
     "me-central-1"   = "mec1"
-
+  }
+  govcloud_regions = {
+    "us-gov-west-1" = "usgw1"
+    "us-gov-east-1" = "usge1"
   }
   well_known_az_ids = {
-    us-east-1 = [2, 4, 6]
+    us-east-1      = [2, 4, 6]
     ap-northeast-1 = [1, 2, 4]
   }
   az_id_prefix = lookup(local.supported_regions, var.region, null) != null ? "${local.supported_regions[var.region]}-az" : "unknown-az"
@@ -151,14 +155,14 @@ module "vpc" {
   private_subnets = local.all_subnets[0]
   public_subnets  = local.all_subnets[1]
   # Tags defined per https://repost.aws/knowledge-center/eks-vpc-subnet-discovery
-  private_subnet_tags = merge(var.extra_tags ,
+  private_subnet_tags = merge(var.extra_tags,
     {
       "kubernetes.io/role/internal-elb" = "1"
-    })
-  public_subnet_tags = merge(var.extra_tags ,
+  })
+  public_subnet_tags = merge(var.extra_tags,
     {
       "kubernetes.io/role/elb" = "1"
-    })
+  })
 
   enable_nat_gateway            = true
   enable_dns_hostnames          = true
@@ -170,5 +174,5 @@ module "vpc" {
       Terraform    = "true"
       service      = "ROSA"
       cluster_name = var.cluster_name
-    })
+  })
 }

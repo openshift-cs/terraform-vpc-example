@@ -16,5 +16,5 @@ terraform {
 provider "aws" {
   region = var.region
   # Force set sts_region to preventing hanging on invalid regions
-  sts_region = "us-east-1"
+  sts_region = contains(keys(local.govcloud_regions), var.region) ? "us-gov-east-1" : "us-east-1"
 }
